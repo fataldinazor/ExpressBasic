@@ -11,16 +11,17 @@
           <a href="/new">Add new Message</a>
         </button>
       </div>
-      <%messages.forEach(message=>{%>
+      <% messages.forEach(message => { %>
       <div class="individual-block">
-        <h1><%=message.text%></h1>
-        <p><%=message.user%></p>
-        <p><%=message.added%></p>
-        <button>
-          <a href="/messages/<%=message.id%>">Open this Message</a>
-        </button>
+        <h1><%= message.message %></h1>
+        <p><%= message.username %></p>
+        <% if (message.date_added) { %>
+          <% const date = message.date_added.toISOString().split('T')[0]; %>
+          <p><%= date %></p>
+        <% } %>
+        <a href="/messages/<%= message.id %>" class="button">Open this Message</a> <!-- Styled link -->
       </div>
-      <%})%>
+      <% }) %>
     </div>
   </body>
 </html>
